@@ -4,6 +4,7 @@ import ExpensesList from "./components/ExpensesList"
 import Footer from "./components/Footer"
 import Header from "./components/Header"
 import WelcomeBudget from "./components/WelcomeBudget"
+import ExpensesCalc from "./components/ExpensesCalc"
 
 export const expensesList_1 = [{
   id: '1',
@@ -56,6 +57,8 @@ function App() {
   }
 
   const settingsHandler = (b, n) => {
+    if (b == null || b == 0)
+      return
     setBudget(b)
     setName(n)
   }
@@ -76,18 +79,30 @@ function App() {
         < div className="flex flex-col h-screen" >
           <header className="p-4 bg-gray-100"> <Header name={name} /></header>
           <main className="p-4 flex-grow">
-            <div className="flex items-center justify-center">
-              <button
-                className="mb-4 px-4 py-2 justify-center items-center bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                onClick={() => setIsPopupOpen(true)}
-              >
-                Add Expense
-              </button>
+            <div>
+              <div className=" flex items-center justify-center ">
+                <ExpensesCalc />
+              </div>
+              <div className=" flex items-center justify-center ">
+
+                <button
+                  className="mb-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  onClick={() => setIsPopupOpen(true)}
+                >
+                  Add Expense
+                </button>
+              </div>
             </div>
             {isPopupOpen && <AddExpense onClose={() => setIsPopupOpen(false)} onSave={addExpenseHandler} />}
-            <ExpensesList expensesList={expensesList} total={totalExpensesAmount} onDeleteHandler={onDeleteHandler} />
+            <ExpensesList
+              expensesList={expensesList}
+              total={totalExpensesAmount}
+              onDeleteHandler={onDeleteHandler}
+            />
           </main>
-          <footer className="p-4 bg-gray-100"><Footer /></footer>
+          <footer className="p-4 bg-gray-100">
+            <Footer />
+          </footer>
         </div >
       }
     </>
