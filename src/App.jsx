@@ -32,6 +32,9 @@ export const expensesList_1 = [{
 function App() {
   const [budget, setBudget] = useState(0)
   const [name, setName] = useState('')
+  const [salary, setSalary] = useState(0)
+  const [expectedExpense, setExpectedExpense] = useState(0)
+  const [remainingBudget, setRemainingBudget] = useState(0)
 
   const [totalExpensesAmount, setTotalExpensesAmount] = useState(0)
   const [expensesList, setExpensesList] = useState(expensesList_1)
@@ -54,13 +57,17 @@ function App() {
 
   const onDeleteHandler = (id) => {
     setExpensesList(expensesList.filter(expense => expense.id !== id))
+    setRemainingBudget(budget - totalExpensesAmount)
   }
 
-  const settingsHandler = (b, n) => {
-    if (b == null || b == 0)
+  const settingsHandler = (b, n, s, e) => {
+    if (b == 0 || s == 0 || e == 0 || n == '')
       return
     setBudget(b)
+    setRemainingBudget(b - totalExpensesAmount)
     setName(n)
+    setSalary(s)
+    setExpectedExpense(e)
   }
   const addExpenseHandler = (expense) => {
     setExpensesList(prevExpenses => [
@@ -68,6 +75,8 @@ function App() {
       { ...expense, id: Math.random().toString() }
     ]);
     setIsPopupOpen(false);
+    const remaining = remainingBudget - expense.amount
+    setRemainingBudget(remaining)
   };
 
 
@@ -81,7 +90,13 @@ function App() {
           <main className="p-4 flex-grow">
             <div>
               <div className=" flex items-center justify-center ">
-                <ExpensesCalc />
+                <ExpensesCalc
+                  budget={budget}
+                  remainingBudget={remainingBudget}
+                  salary={salary}
+                  expectedExpense={expectedExpense}
+                  total={totalExpensesAmount}
+                />
               </div>
               <div className=" flex items-center justify-center ">
 

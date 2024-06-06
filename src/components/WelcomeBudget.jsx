@@ -26,7 +26,7 @@ function WelcomeBudget({ settings }) {
                     <label className="text-sm text-gray-700 dark:text-gray-200 mr-2">Expected Expense:</label>
                     <input type="number" className="w-full px-3 dark:text-gray-200 dark:bg-gray-900 py-2 rounded-md border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-1 focus:ring-blue-500" ref={expectedExpenseRef} />
                 </div>
-                <button onClick={() => settings(budgetRef.current.value, nameRef.current.value)} className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">Continue</button>
+                <button onClick={() => settings(budgetRef.current.value, nameRef.current.value, salaryRef.current.value, expectedExpenseRef.current.value)} className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">Continue</button>
             </div>
         </div>
     );

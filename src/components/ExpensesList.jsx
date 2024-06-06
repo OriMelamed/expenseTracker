@@ -36,7 +36,7 @@ function ExpensesList({ expensesList, total, onDeleteHandler }) {
             <div className="flex h-screen">
                 <div className="w-1/2  items-center justify-center">
                     <h2 className='text-2xl font-bold text-fuchsia-950 mx-2 mt-2 mb-5 p-2 text-center'>Expenses List - {total.toFixed(2)}</h2>
-                    <table class="table-auto w-full">
+                    <table className="table-auto w-full">
                         <thead >
                             <tr>
                                 <th>Title</th>
