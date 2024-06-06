@@ -1,19 +1,17 @@
 import React from 'react'
+import OvalCard from './CalcCard'
 
 function ExpensesCalc({ budget, remainingBudget, salary, expectedExpense, total }) {
+    const selectCardColor = () => {
+        return 'bg-white'
+    }
     return (
-        <div>
-            <div className="flex justify-between">
-                <div>
-                    <h1 className="text-2xl font-bold">Budget: {budget}</h1>
-                    <h1 className="text-2xl font-bold">Salary: {salary}</h1>
-                    <h1 className="text-2xl font-bold">Expected Expense: {expectedExpense}</h1>
-                </div>
-                <div>
-                    <h1 className="text-2xl font-bold">Total Amount of Expenses: {total}</h1>
-                    <h1 className="text-2xl font-bold">Remaining Budget: {remainingBudget}</h1>
-                </div>
-            </div>
+        <div className="flex w-full justify-between">
+            <OvalCard title='Budget' number={budget} bgColor=' bg-blue-200' />
+            <OvalCard title='remainingBudget' number={remainingBudget} bgColor={selectCardColor()} />
+            <OvalCard title='salary' number={salary} bgColor=' bg-green-200' />
+            <OvalCard title='expectedExpense' number={expectedExpense} bgColor='bg-red-200' />
+            <OvalCard title='total' number={total} bgColor={selectCardColor()} />
         </div>
     )
 }
